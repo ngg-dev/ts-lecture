@@ -1,8 +1,8 @@
 # Обозреваем TS – план преподавателя
 
-Слайдов: 58; ориентир 91 минут. Время включает демонстрации и короткие вопросы. Практика выдаётся отдельно.
+Слайдов: 55; ориентир 70 минут. Основной рассказ рассчитан на 70 минут; ещё 5 минут оставляем на вопросы. useRef, useEffect и собственный хук вынесены в дополнительные материалы.
 
-## Задача и запуск TypeScript · 16 мин
+## Задача и запуск TypeScript · 13 мин
 
 ### 1. Обозреваем TypeScript · 1 мин
 
@@ -20,7 +20,7 @@
 
 Вывод: Данные проходят через несколько функций и компонентов.
 
-### 3. Задача: показать цену с доставкой · 2 мин
+### 3. Задача: показать цену с доставкой · 1 мин
 
 Слайд: `#delivery-task`
 
@@ -48,7 +48,7 @@
 
 Источники: [TypeScript Handbook · The Basics](https://www.typescriptlang.org/docs/handbook/2/basic-types.html).
 
-### 6. Где ещё части приложения могут не совпасть? · 2 мин
+### 6. Где ещё части приложения могут не совпасть? · 1 мин
 
 Слайд: `#failure-cases`
 
@@ -56,7 +56,7 @@
 
 Вывод: Нужен способ описать ожидания и проверить, что код им соответствует.
 
-### 7. TypeScript = JavaScript + система типов · 2 мин
+### 7. TypeScript = JavaScript + система типов · 1 мин
 
 Слайд: `#what-is-ts`
 
@@ -166,7 +166,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TSConfig · noEmit](https://www.typescriptlang.org/tsconfig/noEmit.html), [React · Using TypeScript](https://react.dev/learn/typescript).
 
-## Базовые типы и данные · 20 мин
+## Базовые типы и данные · 16 мин
 
 ### 18. Начните с вывода типов · 1 мин
 
@@ -228,7 +228,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-### 24. Повторяющийся тип можно назвать · 2 мин
+### 24. Повторяющийся тип можно назвать · 1 мин
 
 Слайд: `#selected-book-type`
 
@@ -238,7 +238,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-### 25. any: используем значение без проверки типов · 2 мин
+### 25. any: используем значение без проверки типов · 1 мин
 
 Слайд: `#any-intro`
 
@@ -248,7 +248,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html).
 
-### 26. Неизвестные данные обозначаем unknown · 2 мин
+### 26. Неизвестные данные обозначаем unknown · 1 мин
 
 Слайд: `#any-unknown`
 
@@ -258,7 +258,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-### 27. Разница any и unknown · 2 мин
+### 27. Разница any и unknown · 1 мин
 
 Слайд: `#any-unknown-comparison`
 
@@ -278,7 +278,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-## Type, interface и расширение · 6 мин
+## Type, interface и расширение · 5 мин
 
 ### 29. interface описывает форму объекта · 2 мин
 
@@ -290,7 +290,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html).
 
-### 30. Расширим книгу дополнительным полем · 3 мин
+### 30. Расширим книгу дополнительным полем · 2 мин
 
 Слайд: `#extend-model`
 
@@ -310,7 +310,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript Handbook · Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html).
 
-## Простые union · 5 мин
+## Простые union · 4 мин
 
 ### 32. Перечислим допустимые статусы · 1 мин
 
@@ -332,7 +332,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html).
 
-### 34. Если вариантов два – уточним нужный · 1.5 мин
+### 34. Если вариантов два – уточним нужный · 1 мин
 
 Слайд: `#union-check`
 
@@ -342,7 +342,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-### 35. У числа нет toUpperCase · 1.5 мин
+### 35. У числа нет toUpperCase · 1 мин
 
 Слайд: `#union-check-error`
 
@@ -352,9 +352,9 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
-## Pick, Omit и Record · 9 мин
+## Pick, Omit и Record · 6 мин
 
-### 36. Pick: возьмём поля для карточки · 3 мин
+### 36. Pick: возьмём поля для карточки · 2 мин
 
 Слайд: `#pick-fields`
 
@@ -364,7 +364,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript · Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html).
 
-### 37. Omit: опишем книгу без id · 3 мин
+### 37. Omit: опишем книгу без id · 2 мин
 
 Слайд: `#omit-fields`
 
@@ -374,7 +374,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript · Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html).
 
-### 38. Record описывает словарь корзины · 3 мин
+### 38. Record описывает словарь корзины · 2 мин
 
 Слайд: `#record`
 
@@ -396,7 +396,7 @@ npx запускает исполняемую команду npm-пакета. �
 
 Источники: [TypeScript Handbook · Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html), [React · Using TypeScript](https://react.dev/learn/typescript).
 
-## TypeScript в React · 33 мин
+## TypeScript в React · 24 мин
 
 ### 40. Подключаем типы к знакомому React-проекту · 1 мин
 
@@ -418,7 +418,7 @@ Book импортируется из модели. React выводит возв
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 42. Типизируем действие «добавить в корзину» · 1.5 мин
+### 42. Типизируем действие «добавить в корзину» · 1 мин
 
 Слайд: `#react-callback`
 
@@ -428,7 +428,7 @@ Book импортируется из модели. React выводит возв
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript), [TypeScript Handbook · Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html).
 
-### 43. Обработчик ждёт id, а получил цену · 1.5 мин
+### 43. Обработчик ждёт id, а получил цену · 1 мин
 
 Слайд: `#react-callback-error`
 
@@ -508,7 +508,7 @@ ChangeEvent импортируется через import type из react. HTMLIn
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 51. Перед сохранением проверим цену · 3 мин
+### 51. Перед сохранением проверим цену · 2 мин
 
 Слайд: `#react-submit`
 
@@ -548,41 +548,11 @@ ComponentProps импортируется через import type из react. У�
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 55. useRef: подскажем, на какой элемент ссылаемся · 2 мин
-
-Слайд: `#react-ref`
-
-useRef<HTMLInputElement>(null) вызывается на верхнем уровне компонента. current читаем внутри обработчика клика. Не вводить useRef как новую систему состояния: здесь только тип ссылки на уже знакомый input.
-
-Вывод: HTMLInputElement даёт подсказки focus; ?. учитывает возможный null.
-
-Источники: [React · Using TypeScript](https://react.dev/learn/typescript), [React · useRef](https://react.dev/reference/react/useRef).
-
-### 56. useEffect не требует параметра типа · 2 мин
-
-Слайд: `#react-effect`
-
-Пример синхронизирует document.title и восстанавливает прежний заголовок. Зависимость title указана. Для запроса async-функцию вызывают внутри эффекта, а не делают сам callback async. Сегодня цель – понять границу типов, не повторить весь useEffect.
-
-Вывод: Функция эффекта возвращает cleanup или ничего. async-эффект напрямую не передаём.
-
-Источники: [React · Using TypeScript](https://react.dev/learn/typescript), [React · useEffect](https://react.dev/reference/react/useEffect).
-
-### 57. Свой хук – функция с понятным результатом · 3 мин
-
-Слайд: `#react-hook`
-
-Хук использует обычный именованный тип Selection и useState. selected может быть null, select принимает Book. Явный возвращаемый тип полезен на публичной границе хука, но TS мог бы вывести его. Внутри возвращаемого обработчика параметр book выводится из Selection.
-
-Вывод: Компонент получает selected и select с уже известными типами.
-
-Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
-
-### 58. Promise<Book[]> описывает результат после await · 2 мин
+### 55. Promise<Book[]> описывает результат после await · 2 мин
 
 Слайд: `#react-promise`
 
-Локальная async-функция возвращает уже известный Book[]. В настоящем fetch ответ JSON нужно проверить на границе приложения, например валидатором схемы. Promise<Book[]> описывает успешное значение после await, а не тип исключения. Подробный пользовательский guard вынесен в дополнение.
+На этот слайд оставляем две минуты. Прочитать async getBooks как Promise<Book[]>, затем await как получение Book[]. Ошибку запроса обрабатывают через try/catch; Promise<Book[]> не задаёт её тип. Локальная async-функция возвращает уже известный Book[]. В настоящем fetch ответ JSON нужно проверить на границе приложения, например валидатором схемы. Promise<Book[]> описывает успешное значение после await, а не тип исключения. Подробный пользовательский guard вынесен в дополнение.
 
 Вывод: Тип результата запроса не проверяет внешний JSON автоматически.
 

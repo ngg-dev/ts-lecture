@@ -336,7 +336,7 @@ const updatedGroups = [
     "cards": [
       [
         "DOM",
-        "HTMLInputElement для ссылки на поле.",
+        "HTMLInputElement для поля события.",
         "TYPESCRIPT"
       ],
       [
@@ -430,10 +430,10 @@ const updatedGroups = [
     "id": "react-promise",
     "chapter": "react",
     "title": "Promise<Book[]> описывает результат после await",
-    "lead": "Готовый параметризованный тип полезен и в API-клиенте.",
+    "lead": "В API-клиенте описываем результат запроса; здесь используем локальную модель без сети.",
     "minutes": 2,
     "takeaway": "Тип результата запроса не проверяет внешний JSON автоматически.",
-    "notes": "Локальная async-функция возвращает уже известный Book[]. В настоящем fetch ответ JSON нужно проверить на границе приложения, например валидатором схемы. Promise<Book[]> описывает успешное значение после await, а не тип исключения. Подробный пользовательский guard вынесен в дополнение.",
+    "notes": "На этот слайд оставляем две минуты. Прочитать async getBooks как Promise<Book[]>, затем await как получение Book[]. Ошибку запроса обрабатывают через try/catch; Promise<Book[]> не задаёт её тип. Локальная async-функция возвращает уже известный Book[]. В настоящем fetch ответ JSON нужно проверить на границе приложения, например валидатором схемы. Promise<Book[]> описывает успешное значение после await, а не тип исключения. Подробный пользовательский guard вынесен в дополнение.",
     "snippetId": "reactPromise",
     "file": "api/books.ts",
     "sources": [
@@ -518,10 +518,21 @@ const reviewedGroups = [
 ];
 
 const groupsById = new Map([...originalGroups, ...updatedGroups, ...reviewedGroups].map(slide => [slide.id, slide]));
-const mainIds = ["cover", "already-know", "delivery-task", "price-problem", "failure-cases", "what-is-ts", "compiler-path", "compiler-output", "tsc-setup", "tsconfig-purpose", "tsc-config", "tsc-run", "build-pipeline", "inference", "function-types", "book-model", "optional-fields", "null", "selected-book-type", "any-intro", "any-unknown", "any-unknown-comparison", "unknown-narrow", "interface", "extend-model", "type-vs-interface", "literal-union", "union-check", "pick-fields", "omit-fields", "record", "react-generics", "react-start", "react-props", "react-callback", "react-hooks", "react-collections", "react-status", "react-inline-event", "react-event", "react-submit", "react-ready-types", "react-children", "react-button", "react-ref", "react-effect", "react-hook", "react-promise"];
-const minuteOverrides = { 'any-intro': 2, 'any-unknown': 2, 'any-unknown-comparison': 2, 'compiler-path': 2, 'function-types': 2, 'optional-fields': 2, 'type-vs-interface': 1, record: 3 };
+const mainIds = ["cover", "already-know", "delivery-task", "price-problem", "failure-cases", "what-is-ts", "compiler-path", "compiler-output", "tsc-setup", "tsconfig-purpose", "tsc-config", "tsc-run", "build-pipeline", "inference", "function-types", "book-model", "optional-fields", "null", "selected-book-type", "any-intro", "any-unknown", "any-unknown-comparison", "unknown-narrow", "interface", "extend-model", "type-vs-interface", "literal-union", "union-check", "pick-fields", "omit-fields", "record", "react-generics", "react-start", "react-props", "react-callback", "react-hooks", "react-collections", "react-status", "react-inline-event", "react-event", "react-submit", "react-ready-types", "react-children", "react-button", "react-promise"];
+// Основной рассказ: 70 минут; ещё 5 минут оставляем на вопросы.
+const minuteOverrides = {
+  'delivery-task': 1, 'failure-cases': 1, 'what-is-ts': 1,
+  'compiler-path': 2, 'function-types': 2, 'optional-fields': 2,
+  'selected-book-type': 1, 'any-intro': 1, 'any-unknown': 1,
+  'any-unknown-comparison': 1, 'extend-model': 2, 'type-vs-interface': 1,
+  'union-check': 2, 'pick-fields': 2, 'omit-fields': 2, record: 2,
+  'react-callback': 2, 'react-submit': 2
+};
 const slideGroups = mainIds.map(id => ({ ...groupsById.get(id), ...(id in minuteOverrides ? { minutes: minuteOverrides[id] } : {}), ...(id === 'record' ? { chapter: 'utilities' } : {}) }));
-export const extraSlides = originalGroups.filter(slide => !mainIds.includes(slide.id) && !['practice', 'recap', 'type-alias', 'compiler-demo'].includes(slide.id));
+export const extraSlides = [
+  ...originalGroups.filter(slide => !mainIds.includes(slide.id) && !['practice', 'recap', 'type-alias', 'compiler-demo'].includes(slide.id)),
+  ...['react-ref', 'react-effect', 'react-hook'].map(id => groupsById.get(id))
+];
 
 // Последовательные объяснения входят в общий маршрут, без вложенной навигации.
 const routeSlides = slideGroups.flatMap(slide => {

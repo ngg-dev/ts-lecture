@@ -379,3 +379,68 @@ function label(status: Status): string {
 Предложить добавить литерал idle в тип. Присваивание never станет ошибкой. Это дополнение к базовым guards; не превращать never в отдельную сложную лекцию.
 
 Источники: [TypeScript Handbook · Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
+
+## useRef: подскажем, на какой элемент ссылаемся
+
+Поле появится после рендера, поэтому начальное значение – null.
+
+```tsx
+function PriceInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return <>
+    <input ref={inputRef} />
+    <button onClick={() => inputRef.current?.focus()}>
+      Перейти к цене
+    </button>
+  </>;
+}
+```
+
+HTMLInputElement даёт подсказки focus; ?. учитывает возможный null.
+
+useRef<HTMLInputElement>(null) вызывается на верхнем уровне компонента. current читаем внутри обработчика клика. Не вводить useRef как новую систему состояния: здесь только тип ссылки на уже знакомый input.
+
+Источники: [React · Using TypeScript](https://react.dev/learn/typescript), [React · useRef](https://react.dev/reference/react/useRef).
+
+## useEffect не требует параметра типа
+
+Типизируем данные title; эффект и cleanup проверяются автоматически.
+
+```tsx
+function PageTitle({ title }: { title: string }) {
+  useEffect(() => {
+    const previous = document.title;
+    document.title = title;
+    return () => { document.title = previous; };
+  }, [title]);
+  return <h1>{title}</h1>;
+}
+```
+
+Функция эффекта возвращает cleanup или ничего. async-эффект напрямую не передаём.
+
+Пример синхронизирует document.title и восстанавливает прежний заголовок. Зависимость title указана. Для запроса async-функцию вызывают внутри эффекта, а не делают сам callback async. Сегодня цель – понять границу типов, не повторить весь useEffect.
+
+Источники: [React · Using TypeScript](https://react.dev/learn/typescript), [React · useEffect](https://react.dev/reference/react/useEffect).
+
+## Свой хук – функция с понятным результатом
+
+Назовём объект, который возвращает useSelectedBook.
+
+```ts
+type Selection = {
+  selected: Book | null;
+  select: (book: Book) => void;
+};
+
+function useSelectedBook(): Selection {
+  const [selected, setSelected] = useState<Book | null>(null);
+  return { selected, select: book => setSelected(book) };
+}
+```
+
+Компонент получает selected и select с уже известными типами.
+
+Хук использует обычный именованный тип Selection и useState. selected может быть null, select принимает Book. Явный возвращаемый тип полезен на публичной границе хука, но TS мог бы вывести его. Внутри возвращаемого обработчика параметр book выводится из Selection.
+
+Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
