@@ -297,6 +297,13 @@ snippets.genericProblemFixed = { ...snippets.genericProblem, text: snippets.gene
 snippets.keyofFixed = { ...snippets.keyof, text: snippets.keyof.text.replace('getField(book, "prcie"); // намеренная опечатка', 'getField(book, "title"); // string'), errors: [] };
 snippets.assertionFixed = { ...snippets.assertion, text: snippets.assertion.text.replace('{ price: "620" }', '{ price: 620 }').replace('// TS пропускает; при запуске TypeError', '// "620": при запуске работает'), errors: [] };
 
+snippets.genericIntro = { text: `function toArray<T>(value: T): T[] {
+  return [value];
+}
+
+const titles = toArray<string>("Солярис"); // string[]
+const prices = toArray<number>(620);      // number[]`, errors: [] };
+
 export function fullSource(snippet) {
   return [snippet.context, snippet.text, 'export {};'].filter(Boolean).join('\n\n');
 }

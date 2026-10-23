@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chapters, slides, totalMinutes, sources, extraSlides } from '../src/content.js';
 export async function writeGuide(root) {
-  let text = `# Обозреваем TS – план преподавателя\n\nСлайдов: ${slides.length}; ориентир ${totalMinutes} минут. Основной рассказ рассчитан на 70 минут; ещё 5 минут оставляем на вопросы. useRef, useEffect и собственный хук вынесены в дополнительные материалы.\n`;
+  let text = `# Обозреваем TS – план преподавателя\n\nСлайдов: ${slides.length}; ориентир ${totalMinutes} минут. Основной рассказ рассчитан на 68 минут; ещё 5 минут оставляем на вопросы. useRef, useEffect и собственный хук вынесены в дополнительные материалы.\n`;
   for (const chapter of chapters) {
     const items = slides.filter(slide => slide.chapter === chapter.id);
     text += `\n## ${chapter.title} · ${items.reduce((n, slide) => n + slide.minutes, 0)} мин\n`;

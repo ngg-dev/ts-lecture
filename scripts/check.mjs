@@ -16,7 +16,7 @@ import { isBook, validateBookJson, goodBook, loadStates } from '../src/model.js'
 import { root } from './bundle-options.mjs';
 
 assert.equal(new Set(slides.map(slide => slide.id)).size, slides.length, 'Уникальные ID слайдов');
-assert.equal(totalMinutes, 70, 'Основной рассказ – 70 минут плюс резерв на вопросы');
+assert.equal(totalMinutes, 68, 'Основной рассказ – 68 минут плюс резерв на вопросы');
 assert.equal(chapters.length, 7);
 for (const chapter of chapters) assert(slides.some(slide => slide.chapter === chapter.id));
 for (const slide of slides) {

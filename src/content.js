@@ -301,7 +301,7 @@ const updatedGroups = [
     "id": "react-event",
     "chapter": "react",
     "title": "Вынесенному обработчику дадим готовый тип",
-    "lead": "ChangeEvent<HTMLInputElement> описывает изменение поля.",
+    "lead": "ChangeEvent импортируем из react; HTMLInputElement уже есть в TypeScript.",
     "minutes": 2,
     "takeaway": "Даже у input type=\"number\" значение поля читается как строка.",
     "notes": "ChangeEvent импортируется через import type из react. HTMLInputElement – готовый DOM-тип TypeScript. currentTarget указывает на input, для которого установлен обработчик. Пустая строка – нормальный черновик формы.",
@@ -341,12 +341,12 @@ const updatedGroups = [
       ],
       [
         "События",
-        "ChangeEvent и FormEvent для обработчиков.",
+        "ChangeEvent импортируем из react.",
         "REACT"
       ],
       [
         "Props",
-        "ReactNode и ComponentProps для компонентов.",
+        "ReactNode и ComponentProps импортируем из react.",
         "REACT"
       ]
     ],
@@ -358,7 +358,7 @@ const updatedGroups = [
     "id": "react-children",
     "chapter": "react",
     "title": "ReactNode описывает содержимое children",
-    "lead": "Панель может содержать текст и JSX.",
+    "lead": "ReactNode импортируем из react: он описывает текст и JSX.",
     "minutes": 2,
     "takeaway": "Готовый ReactNode покрывает значения, которые React может отрисовать.",
     "notes": "ReactNode импортируется через import type. Не пытаться свести children только к string или одному JSX-элементу. Панель – знакомая композиция компонентов; обширное сравнение ReactElement здесь не требуется.",
@@ -372,7 +372,7 @@ const updatedGroups = [
     "id": "react-button",
     "chapter": "react",
     "title": "ComponentProps переиспользует props кнопки",
-    "lead": "Обёртка получает disabled, onClick, children и остальные props button.",
+    "lead": "ComponentProps импортируем из react и получаем готовые props кнопки.",
     "minutes": 2,
     "takeaway": "Переиспользуем контракт стандартного элемента вместо ручного списка атрибутов.",
     "notes": "ComponentProps импортируется через import type из react. Угловые скобки содержат строковый литерал button, выбирающий элемент. Не переписывать тип onClick вручную. Пример не занимается ref: продвинутые варианты ComponentPropsWithRef можно оставить за рамками.",
@@ -430,7 +430,7 @@ const updatedGroups = [
     "id": "react-promise",
     "chapter": "react",
     "title": "Promise<Book[]> описывает результат после await",
-    "lead": "В API-клиенте описываем результат запроса; здесь используем локальную модель без сети.",
+    "lead": "Promise не требует импорта. Пример API-клиента ниже – локальная модель без сети.",
     "minutes": 2,
     "takeaway": "Тип результата запроса не проверяет внешний JSON автоматически.",
     "notes": "На этот слайд оставляем две минуты. Прочитать async getBooks как Promise<Book[]>, затем await как получение Book[]. Ошибку запроса обрабатывают через try/catch; Promise<Book[]> не задаёт её тип. Локальная async-функция возвращает уже известный Book[]. В настоящем fetch ответ JSON нужно проверить на границе приложения, например валидатором схемы. Promise<Book[]> описывает успешное значение после await, а не тип исключения. Подробный пользовательский guard вынесен в дополнение.",
@@ -449,13 +449,13 @@ const updatedGroups = [
 
 const reviewedGroups = [
   {
-    id: 'react-generics', chapter: 'generics', title: 'Дженерик: передаём тип в угловых скобках',
-    lead: 'Дженерик – параметр типа. Готовый хук использует переданный тип для состояния.',
-    code: code('reactGeneric', 'Counter.tsx · внутри компонента'), minutes: 2,
-    bullets: ['В useState<number>(0) передаём тип number и начальное значение 0.', 'count будет числом; setCount принимает число или функцию обновления.', 'Тип можно передать явно или позволить TypeScript вывести его.'],
-    takeaway: 'Угловые скобки задают тип, круглые скобки передают значение.',
-    notes: 'Короткое введение перед хуками, без реализации собственной generic-функции. У useState есть параметр типа; здесь выбираем number. Этот тип связывает состояние и setter. Можно записать useState(0), тип выведется сам – это следующий слайд. Затем покажем действительно полезную явную запись для пустого массива и null. Параметры типов существуют только при проверке и исчезают в JavaScript.',
-    sources: ['generics', 'react']
+    id: 'react-generics', chapter: 'generics', title: 'Дженерик сохраняет тип переданного значения',
+    lead: 'Одна функция превращает значение в массив, сохраняя тип его элемента.',
+    code: code('genericIntro', 'toArray.ts'), minutes: 2,
+    bullets: ['T – параметр типа, который используем внутри описания функции.', 'Передали string: value – строка, результат T[] – массив строк.', 'Передали number: получим массив чисел.'],
+    takeaway: 'Одна реализация работает с разными типами и сохраняет связь между входом и результатом.',
+    notes: 'На дженерики оставляем две минуты. Задача: обернуть одно значение в массив без потери его типа. Сначала прочитать toArray<string>: T становится string и в параметре, и в результате string[]. Затем заменить выбранный тип на number для второго вызова. Имя T условное; это параметр типа, а не значение JavaScript. Явные <string> и <number> здесь нужны для первого знакомства: в обоих вызовах TypeScript может вывести тип из аргумента. Угловые скобки передают тип, круглые – значение. В React тот же приём встретится у useState<Book[]>; сам хук здесь не разбираем.',
+    sources: ['generics']
   },
   {
     id: 'compiler-demo', chapter: 'why', title: 'Компилятор: верный и неверный вызов',
@@ -518,15 +518,15 @@ const reviewedGroups = [
 ];
 
 const groupsById = new Map([...originalGroups, ...updatedGroups, ...reviewedGroups].map(slide => [slide.id, slide]));
-const mainIds = ["cover", "already-know", "delivery-task", "price-problem", "failure-cases", "what-is-ts", "compiler-path", "compiler-output", "tsc-setup", "tsconfig-purpose", "tsc-config", "tsc-run", "build-pipeline", "inference", "function-types", "book-model", "optional-fields", "null", "selected-book-type", "any-intro", "any-unknown", "any-unknown-comparison", "unknown-narrow", "interface", "extend-model", "type-vs-interface", "literal-union", "union-check", "pick-fields", "omit-fields", "record", "react-generics", "react-start", "react-props", "react-callback", "react-hooks", "react-collections", "react-status", "react-inline-event", "react-event", "react-submit", "react-ready-types", "react-children", "react-button", "react-promise"];
-// Основной рассказ: 70 минут; ещё 5 минут оставляем на вопросы.
+const mainIds = ["cover", "already-know", "delivery-task", "price-problem", "failure-cases", "what-is-ts", "compiler-path", "compiler-output", "tsc-setup", "tsconfig-purpose", "tsc-config", "tsc-run", "build-pipeline", "inference", "function-types", "book-model", "optional-fields", "null", "selected-book-type", "any-intro", "any-unknown", "any-unknown-comparison", "unknown-narrow", "interface", "extend-model", "type-vs-interface", "literal-union", "union-check", "pick-fields", "omit-fields", "record", "react-generics", "react-start", "react-props", "react-callback", "react-hooks", "react-collections", "react-status", "react-inline-event", "react-event", "react-ready-types", "react-children", "react-button", "react-promise"];
+// Основной рассказ: 68 минут; ещё 5 минут оставляем на вопросы.
 const minuteOverrides = {
   'delivery-task': 1, 'failure-cases': 1, 'what-is-ts': 1,
   'compiler-path': 2, 'function-types': 2, 'optional-fields': 2,
   'selected-book-type': 1, 'any-intro': 1, 'any-unknown': 1,
   'any-unknown-comparison': 1, 'extend-model': 2, 'type-vs-interface': 1,
   'union-check': 2, 'pick-fields': 2, 'omit-fields': 2, record: 2,
-  'react-callback': 2, 'react-submit': 2
+  'react-callback': 2
 };
 const slideGroups = mainIds.map(id => ({ ...groupsById.get(id), ...(id in minuteOverrides ? { minutes: minuteOverrides[id] } : {}), ...(id === 'record' ? { chapter: 'utilities' } : {}) }));
 export const extraSlides = [

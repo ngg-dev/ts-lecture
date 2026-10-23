@@ -1,6 +1,6 @@
 # Обозреваем TS – план преподавателя
 
-Слайдов: 55; ориентир 70 минут. Основной рассказ рассчитан на 70 минут; ещё 5 минут оставляем на вопросы. useRef, useEffect и собственный хук вынесены в дополнительные материалы.
+Слайдов: 54; ориентир 68 минут. Основной рассказ рассчитан на 68 минут; ещё 5 минут оставляем на вопросы. useRef, useEffect и собственный хук вынесены в дополнительные материалы.
 
 ## Задача и запуск TypeScript · 13 мин
 
@@ -386,17 +386,17 @@ npx запускает исполняемую команду npm-пакета. �
 
 ## Дженерики · 2 мин
 
-### 39. Дженерик: передаём тип в угловых скобках · 2 мин
+### 39. Дженерик сохраняет тип переданного значения · 2 мин
 
 Слайд: `#react-generics`
 
-Короткое введение перед хуками, без реализации собственной generic-функции. У useState есть параметр типа; здесь выбираем number. Этот тип связывает состояние и setter. Можно записать useState(0), тип выведется сам – это следующий слайд. Затем покажем действительно полезную явную запись для пустого массива и null. Параметры типов существуют только при проверке и исчезают в JavaScript.
+На дженерики оставляем две минуты. Задача: обернуть одно значение в массив без потери его типа. Сначала прочитать toArray<string>: T становится string и в параметре, и в результате string[]. Затем заменить выбранный тип на number для второго вызова. Имя T условное; это параметр типа, а не значение JavaScript. Явные <string> и <number> здесь нужны для первого знакомства: в обоих вызовах TypeScript может вывести тип из аргумента. Угловые скобки передают тип, круглые – значение. В React тот же приём встретится у useState<Book[]>; сам хук здесь не разбираем.
 
-Вывод: Угловые скобки задают тип, круглые скобки передают значение.
+Вывод: Одна реализация работает с разными типами и сохраняет связь между входом и результатом.
 
-Источники: [TypeScript Handbook · Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html), [React · Using TypeScript](https://react.dev/learn/typescript).
+Источники: [TypeScript Handbook · Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html).
 
-## TypeScript в React · 24 мин
+## TypeScript в React · 22 мин
 
 ### 40. Подключаем типы к знакомому React-проекту · 1 мин
 
@@ -508,17 +508,7 @@ ChangeEvent импортируется через import type из react. HTMLIn
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 51. Перед сохранением проверим цену · 2 мин
-
-Слайд: `#react-submit`
-
-FormEvent<HTMLFormElement> – тип события отправки. preventDefault отменяет переход страницы. Проверить пустую строку до Number, затем конечность и неотрицательность. console.log обозначает место вызова сохранения; полноценный локальный редактор будет в демо.
-
-Вывод: Number и проверка диапазона выполняются в JavaScript; TS их не заменяет.
-
-Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
-
-### 52. Готовые типы ищем у библиотеки · 1 мин
+### 51. Готовые типы ищем у библиотеки · 1 мин
 
 Слайд: `#react-ready-types`
 
@@ -528,7 +518,7 @@ DOM-типы вроде HTMLInputElement входят в lib.dom TypeScript. Cha
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 53. ReactNode описывает содержимое children · 2 мин
+### 52. ReactNode описывает содержимое children · 2 мин
 
 Слайд: `#react-children`
 
@@ -538,7 +528,7 @@ ReactNode импортируется через import type. Не пытатьс
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 54. ComponentProps переиспользует props кнопки · 2 мин
+### 53. ComponentProps переиспользует props кнопки · 2 мин
 
 Слайд: `#react-button`
 
@@ -548,7 +538,7 @@ ComponentProps импортируется через import type из react. У�
 
 Источники: [React · Using TypeScript](https://react.dev/learn/typescript).
 
-### 55. Promise<Book[]> описывает результат после await · 2 мин
+### 54. Promise<Book[]> описывает результат после await · 2 мин
 
 Слайд: `#react-promise`
 

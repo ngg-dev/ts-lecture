@@ -1,8 +1,10 @@
 import { bookType } from './examples.js';
 
-const imports = `import { useState, useRef, useEffect } from 'react';
-import type { ChangeEvent, FormEvent, ReactNode, ComponentProps } from 'react';`;
+const importedTypes = ['ChangeEvent', 'FormEvent', 'ReactNode', 'ComponentProps'];
+const typeImport = names => `import type { ${names.join(', ')} } from 'react';`;
+const imports = `import { useState, useRef, useEffect } from 'react';\n${typeImport(importedTypes)}`;
 const context = `${imports}\n${bookType}`;
+const contextWithout = name => context.replace(typeImport(importedTypes), typeImport(importedTypes.filter(type => type !== name)));
 const inside = text => ({ text, context: `${context}\nfunction Example() {`, suffix: '\nreturn null;\n}', errors: [] });
 
 export const reactSnippets = {
@@ -24,12 +26,6 @@ function AddButton({ book, onAdd }: Props) {
     В корзину
   </button>;
 }`, errors: [] },
-  reactGeneric: inside(`const [count, setCount] = useState<number>(0);
-
-// count имеет тип number
-function addOne() {
-  setCount(count + 1);
-}`),
   reactState: inside(`const [count, setCount] = useState(0);
 const [draft, setDraft] = useState("620");
 
@@ -55,14 +51,18 @@ function loaded() {
   return <input type="number" value={draft}
     onChange={event => setDraft(event.currentTarget.value)} />;
 }`, errors: [] },
-  reactEvent: { context, text: `function PriceInput() {
+  reactEvent: { context: contextWithout('ChangeEvent'), text: `import type { ChangeEvent } from "react";
+
+function PriceInput() {
   const [draft, setDraft] = useState("");
   function change(event: ChangeEvent<HTMLInputElement>) {
     setDraft(event.currentTarget.value);
   }
   return <input value={draft} onChange={change} />;
 }`, errors: [] },
-  reactSubmit: { context, text: `function PriceForm() {
+  reactSubmit: { context: contextWithout('FormEvent'), text: `import type { FormEvent } from "react";
+
+function PriceForm() {
   const [draft, setDraft] = useState("");
   function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -77,14 +77,18 @@ function loaded() {
     <button>Сохранить</button>
   </form>;
 }`, errors: [] },
-  reactChildren: { context, text: `type PanelProps = { children: ReactNode };
+  reactChildren: { context: contextWithout('ReactNode'), text: `import type { ReactNode } from "react";
+
+type PanelProps = { children: ReactNode };
 
 function Panel({ children }: PanelProps) {
   return <section>{children}</section>;
 }
 
 const example = <Panel>Цена: <strong>620 ₽</strong></Panel>;`, errors: [] },
-  reactButton: { context, text: `type ButtonProps = ComponentProps<"button">;
+  reactButton: { context: contextWithout('ComponentProps'), text: `import type { ComponentProps } from "react";
+
+type ButtonProps = ComponentProps<"button">;
 
 function SaveButton(props: ButtonProps) {
   return <button {...props} />;
